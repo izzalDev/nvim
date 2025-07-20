@@ -15,9 +15,9 @@ end
 
 lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  setup_layvim()
+  setup_lazyvim()
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup("plugins")
 require("options")
+require('lazy').setup("plugins")
