@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "setup_lazyvim",
+        "lazypath",
+        "setup_layvim"
+    ]
+}
