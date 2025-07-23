@@ -1,2 +1,5 @@
+vim.opt.rtp:prepend("lazy.nvim/")
+
 require("options")
-require("lazyvim")
+require('lazy').setup("plugins")
+
