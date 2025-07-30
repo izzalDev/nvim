@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 keymap("", "<Space>", "<Nop>", opts)
@@ -14,6 +14,10 @@ for _, mode in pairs({ "i", "v", "n", "x" }) do
 	keymap(mode, "<S-Down>", "<cmd>t.<cr>", opts)
 	keymap(mode, "<S-Up>", "<cmd>t -l<cr>", opts)
 	keymap(mode, "<C-n>", "<cmd>Neotree toggle<cr>", opts)
+end
+
+for _, mode in pairs({ "n", "v" }) do
+	keymap(mode, "<leader>ca", vim.lsp.buf.code_action, opts)
 end
 
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
