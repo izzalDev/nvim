@@ -7,5 +7,10 @@ return {
 	},
 	config = function()
 		require("noice").setup()
+		vim.api.nvim_create_autocmd("VimLeavePre", {
+			callback = function()
+				pcall(vim.cmd, "NoiceDismiss")
+			end,
+		})
 	end,
 }
