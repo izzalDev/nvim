@@ -13,3 +13,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+	callback = function()
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		local modified = vim.bo.modified
+
+		if modified and buftype == "" then
+			vim.cmd("silent write")
+		end
+	end,
+})
