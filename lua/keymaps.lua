@@ -22,3 +22,9 @@ end
 
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 keymap("n", "<leader>snl", "<cmd>Noice last<cr>", { desc = "Noice Last Message" })
+keymap("n", "<leader>t", "", { desc = "Terminal" })
+keymap("n", "<leader>tx", "<cmd>ToggleTermToggleAll!<cr>", { desc = "Close Tab" })
+keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
+keymap("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { desc = "Horizontal" })
+keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+keymap("n", "<leader>ts", "<cmd>ToggleTerm direction=tab<cr>", { desc = "New Tab" })
