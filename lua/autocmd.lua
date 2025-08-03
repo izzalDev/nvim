@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			return
 		end
 
-		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		local buftype = vim.bo.buftype
 		if buftype == "" then
 			vim.keymap.set("i", "<Up>", "<Nop>", { buffer = true })
 			vim.keymap.set("i", "<Down>", "<Nop>", { buffer = true })
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	callback = function()
-		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		local buftype = vim.bo.buftype
 		local modified = vim.bo.modified
 
 		if modified and buftype == "" then
