@@ -1,0 +1,20 @@
+{
+  "workspace": {
+    "library": [
+      "${3rd}/luv/library",
+      "${3rd}/busted/library",
+      "${env:VIMRUNTIME}/lua",
+      "${env:VIMRUNTIME}/lua/vim/lsp"
+    ],
+    "checkThirdParty": false
+  },
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "diagnostics": {
+    "globals": ["vim"]
+  },
+  "telemetry": {
+    "enable": false
+  }
+}
