@@ -1,30 +1,30 @@
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
-keymap("", "<Space>", "<Nop>", opts)
-
-for _, mode in pairs({ "n", "v", "s" }) do
-	keymap(mode, "<Up>", "<Nop>", opts)
-	keymap(mode, "<Down>", "<Nop>", opts)
-	keymap(mode, "<Left>", "<Nop>", opts)
-	keymap(mode, "<Right>", "<Nop>", opts)
+local keymap = function (mode, lhs, rhs, desc)
+  vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true, silent = true })
 end
 
-for _, mode in pairs({ "i", "v", "n", "x" }) do
-	keymap(mode, "<S-Down>", "<cmd>t.<cr>", opts)
-	keymap(mode, "<S-Up>", "<cmd>t -l<cr>", opts)
-	keymap(mode, "<C-n>", "<cmd>Neotree toggle<cr>", opts)
+local keymaps = function(mode, mappings)
+  for _, map in ipairs(mappings) do
+    keymap(mode, map[1], map[2], map[3])
+  end
 end
 
-for _, mode in pairs({ "n", "v" }) do
-	keymap(mode, "<leader>ca", vim.lsp.buf.code_action, opts)
-end
+keymaps({ "n", "v", "i", "x" }, {
+  { "<S-Down>", "<cmd>t.<cr>" },
+  { "<S-Up>", "<cmd>t -l<cr>" },
+  { "<C-n>", "<cmd>Neotree toggle<cr>" },
+})
 
-keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
-keymap("n", "<leader>snl", "<cmd>Noice last<cr>", { desc = "Noice Last Message" })
-keymap("n", "<leader>t", "", { desc = "Terminal" })
-keymap("n", "<leader>tx", "<cmd>ToggleTermToggleAll!<cr>", { desc = "Close Tab" })
-keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
-keymap("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { desc = "Horizontal" })
-keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
-keymap("n", "<leader>ts", "<cmd>ToggleTerm direction=tab<cr>", { desc = "New Tab" })
+keymaps("n", {
+  { "<leader>e", "<cmd>Neotree toggle<cr>", "Toggle Explorer" },
+  { "<leader>o", "<cmd>Neotree focus<cr>", "Toggle Focus Explorer" },
+  { "<leader>snl", "<cmd>Noice last<cr>", "Noice Last Message" },
+  -- Terminal group
+  { "<leader>t", "", "Terminal" },
+  { "<leader>tx", "<cmd>ToggleTermToggleAll!<cr>", "Close All Terminals" },
+  { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", "Float Terminal" },
+  { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal Terminal" },
+  { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical Terminal" },
+  { "<leader>ts", "<cmd>ToggleTerm direction=tab<cr>", "Tab Terminal" },
+})
+
+keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
