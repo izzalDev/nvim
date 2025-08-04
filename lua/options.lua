@@ -9,3 +9,4 @@ vim.g.mapleader = " "
 vim.keymap.set("n", ";", ":")
 -- set fillchars=eob:\
 vim.opt.fillchars = { eob = " " }
+vim.o.fileformat = "unix"
