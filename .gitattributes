@@ -1,0 +1,3 @@
+* text=auto eol=lf
+.gitattributes eol=lf
+lazy-lock.json text eol=lf merge=union
