@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			vim.keymap.set("i", "<Left>", "<Nop>", { buffer = true })
 			vim.keymap.set("i", "<Right>", "<Nop>", { buffer = true })
 		end
+
+		vim.cmd("Neotree close")
 	end,
 })
 
@@ -26,11 +28,11 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    local shada_dir = vim.fn.stdpath("data") .. "/shada/"
-    local tmp_files = vim.fn.glob(shada_dir .. "main.shada.tmp.*", true, true)
-    for _, file in ipairs(tmp_files) do
-      os.remove(file)
-    end
-  end
+	callback = function()
+		local shada_dir = vim.fn.stdpath("data") .. "/shada/"
+		local tmp_files = vim.fn.glob(shada_dir .. "main.shada.tmp.*", true, true)
+		for _, file in ipairs(tmp_files) do
+			os.remove(file)
+		end
+	end,
 })
