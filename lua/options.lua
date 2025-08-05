@@ -27,3 +27,6 @@ for _, mode in ipairs({ "n", "v", "s" }) do
 	keymap(mode, "<LeftMouse>", "<Nop>", opts)
 	keymap(mode, "<RightMouse>", "<Nop>", opts)
 end
+
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
