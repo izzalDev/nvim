@@ -18,15 +18,12 @@ local opts = { noremap = true, silent = true }
 -- Disable <Space>
 keymap("", "<Space>", "<Nop>", opts)
 
--- Remap `;` to `:`
-keymap("n", ";", ":", opts)
-
 -- Disable arrow keys and mouse buttons in normal, visual, and select mode
 for _, mode in ipairs({ "n", "v", "s" }) do
-  keymap(mode, "<Up>", "<Nop>", opts)
-  keymap(mode, "<Down>", "<Nop>", opts)
-  keymap(mode, "<Left>", "<Nop>", opts)
-  keymap(mode, "<Right>", "<Nop>", opts)
-  keymap(mode, "<LeftMouse>", "<Nop>", opts)
-  keymap(mode, "<RightMouse>", "<Nop>", opts)
+	keymap(mode, "<Up>", "<Nop>", opts)
+	keymap(mode, "<Down>", "<Nop>", opts)
+	keymap(mode, "<Left>", "<Nop>", opts)
+	keymap(mode, "<Right>", "<Nop>", opts)
+	keymap(mode, "<LeftMouse>", "<Nop>", opts)
+	keymap(mode, "<RightMouse>", "<Nop>", opts)
 end
