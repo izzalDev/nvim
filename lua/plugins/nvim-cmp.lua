@@ -8,6 +8,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lua",
 		"windwp/nvim-autopairs",
+		"onsails/lspkind.nvim",
 	},
 	opts = function()
 		local cmp = require("cmp")
@@ -27,7 +28,7 @@ return {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"] = cmp.mapping.abort(),
+				["<C-l>"] = cmp.mapping.abort(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
@@ -59,25 +60,27 @@ return {
 				{ name = "nvim_lua" },
 			}),
 			formatting = {
-				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
-					vim_item.menu = vim.api.nvim_get_mode().mode == "c" and "" or vim_item.kind
-					-- vim_item.menu = ({
-					-- 	nvim_lsp = "(LSP)",
-					-- 	buffer = "(Buffer)",
-					-- 	path = "(Path)",
-					-- 	codeium = "(Codeium)",
-					-- })[entry.source.name]
-					return vim_item
+					local kind = require("lspkind").cmp_format({
+						mode = "symbol",
+						maxwidth = 25,
+						ellipsis_char = "...",
+					})(entry, vim_item)
+
+					kind.menu = ({
+						nvim_lsp = "[LSP]",
+						buffer = "[Buffer]",
+						path = "[Path]",
+						nvim_lua = "[Lua]",
+					})[entry.source.name] or ""
+
+					return kind
 				end,
+				fields = { "kind", "abbr", "menu" },
 			},
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
-			},
-			experimental = {
-				ghost_text = false,
-				native_menu = false,
 			},
 		}
 	end,
