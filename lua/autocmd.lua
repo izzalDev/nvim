@@ -18,8 +18,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	callback = function()
 		local buftype = vim.bo.buftype
 		local modified = vim.bo.modified
+		local filename = vim.api.nvim_bug_get_name(0)
 
-		if modified and buftype == "" then
+		if modified and buftype == "" and filename ~= "" then
 			vim.cmd("silent write")
 		end
 	end,
