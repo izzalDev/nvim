@@ -12,7 +12,8 @@
     "version": "LuaJIT"
   },
   "diagnostics": {
-    "globals": ["vim"]
+    "globals": ["vim",
+            "Snacks"]
   },
   "telemetry": {
     "enable": false

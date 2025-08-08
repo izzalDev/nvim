@@ -11,8 +11,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			vim.keymap.set("i", "<Left>", "<Nop>", { buffer = true })
 			vim.keymap.set("i", "<Right>", "<Nop>", { buffer = true })
 		end
-
-		vim.cmd("Neotree close")
 	end,
 })
 
