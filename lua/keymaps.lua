@@ -25,6 +25,12 @@ keymaps("n", {
 	{ "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal Terminal" },
 	{ "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical Terminal" },
 	{ "<leader>ts", "<cmd>ToggleTerm direction=tab<cr>", "Tab Terminal" },
+	{ "<leader>Q", "<cmd>quit<cr>", "Quit" },
+})
+
+keymaps("v", {
+	{ ">", ">gv", "Indent right" },
+	{ "<", "<gv", "Indent left" },
 })
 
 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")

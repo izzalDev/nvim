@@ -1,6 +1,5 @@
 return {
 	"hrsh7th/nvim-cmp",
-	version = false, -- last release is way too old
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
@@ -52,6 +51,21 @@ return {
 					"i",
 					"s",
 				}),
+				["<Down>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+
+				["<Up>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },

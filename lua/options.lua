@@ -19,13 +19,13 @@ local opts = { noremap = true, silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 
 -- Disable arrow keys and mouse buttons in normal, visual, and select mode
-for _, mode in ipairs({ "n", "v", "s" }) do
+for _, mode in ipairs({ "n", "v", "s", "i" }) do
 	keymap(mode, "<Up>", "<Nop>", opts)
 	keymap(mode, "<Down>", "<Nop>", opts)
 	keymap(mode, "<Left>", "<Nop>", opts)
 	keymap(mode, "<Right>", "<Nop>", opts)
-	keymap(mode, "<LeftMouse>", "<Nop>", opts)
-	keymap(mode, "<RightMouse>", "<Nop>", opts)
+	-- keymap(mode, "<LeftMouse>", "<Nop>", opts)
+	-- keymap(mode, "<RightMouse>", "<Nop>", opts)
 end
 
 vim.opt.undofile = true
