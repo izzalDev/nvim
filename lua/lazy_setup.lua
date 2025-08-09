@@ -21,6 +21,13 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+	end,
+})
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
@@ -32,4 +39,9 @@ require("lazy").setup({
 	install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+	ui = {
+		border = "rounded",
+		backdrop = 100,
+		title = " Lazy ",
+	},
 })

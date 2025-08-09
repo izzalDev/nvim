@@ -24,8 +24,8 @@ for _, mode in ipairs({ "n", "v", "s" }) do
 	keymap(mode, "<Down>", "<Nop>", opts)
 	keymap(mode, "<Left>", "<Nop>", opts)
 	keymap(mode, "<Right>", "<Nop>", opts)
-	keymap(mode, "<LeftMouse>", "<Nop>", opts)
-	keymap(mode, "<RightMouse>", "<Nop>", opts)
+	-- keymap(mode, "<LeftMouse>", "<Nop>", opts)
+	-- keymap(mode, "<RightMouse>", "<Nop>", opts)
 end
 
 vim.opt.undofile = true
