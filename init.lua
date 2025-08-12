@@ -27,6 +27,9 @@ require("lazy").setup({
 		backdrop = 100,
 		title = " Lazy ",
 	},
+	change_detection = {
+		notify = false,
+	},
 })
 
 require("options")

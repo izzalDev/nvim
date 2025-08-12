@@ -3,44 +3,44 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	"folke/noice.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = {},
-	-- 	dependencies = {
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"rcarriga/nvim-notify",
-	-- 	},
-	-- },
 	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("configs.telescope")
-		end,
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
+		"MunifTanjim/nui.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"rcarriga/nvim-notify",
+		event = "VeryLazy",
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("configs.lualine")
-		end,
+		config = require("configs.lualine"),
+	},
+	{
+		"nvim-tree/nvim-web-devicons",
+		event = "BufReadPost",
 	},
 	{
 		"mikavilpas/yazi.nvim",
+		cmd = "YaziToggle",
+	},
+	{
+		"nvim-lua/plenary.nvim",
 		event = "VeryLazy",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim", lazy = true },
-		},
 	},
 	{
 		"stevearc/oil.nvim",
+		lazy = true,
+		cmd = { "Oil", "OilOpen", "OilClose" },
 		opts = {},
-		lazy = false,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "BufEnter",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("configs.gitsigns")
 		end,
@@ -61,16 +61,36 @@ return {
 	{
 		"mason-org/mason.nvim",
 		config = function()
-			require("mason").setup({ ui = { backdrop = 100, border = "rounded" } })
+			require("mason").setup({
+				ui = { backdrop = 100, border = "rounded" },
+			})
 		end,
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
+		event = "BufEnter",
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = { "lua_ls" },
 				automatic_installation = true,
 			})
 		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		event = "BufEnter",
+		config = function()
+			vim.lsp.enable("lua_ls")
+		end,
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		config = require("configs.snacks"),
+	},
+	{
+		"stevearc/conform.nvim",
+		event = { "InsertLeave", "BufWritePre" },
+		config = require("configs.conform"),
 	},
 }

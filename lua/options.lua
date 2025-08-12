@@ -9,8 +9,6 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
 utils.set_bg_transparent("NormalFloat")
 utils.set_bg_transparent("FloatBorder")
 
@@ -39,3 +37,4 @@ end
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.lsp.enable("lua_ls")

@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "TextChangedI" }, {
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	callback = function()
 		local buftype = vim.bo.buftype
 		local modified = vim.bo.modified
@@ -6,7 +6,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "TextChangedI" }, {
 		local modifiable = vim.bo.modifiable
 
 		if modifiable and modified and buftype == "" and bufname ~= "" then
-			vim.cmd("silent write")
+			vim.defer_fn(function()
+				vim.cmd("silent write")
+			end, 3000)
 		end
 	end,
 })
