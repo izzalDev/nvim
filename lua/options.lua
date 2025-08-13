@@ -8,9 +8,16 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.fillchars = { eob = " " }
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
-vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
+vim.opt.mouse = ""
+vim.cmd("set mousescroll=ver:1")
+vim.opt.scrolloff = 999
 utils.set_bg_transparent("NormalFloat")
 utils.set_bg_transparent("FloatBorder")
+
+vim.opt.shell = "pwsh -nologo"
+
+-- Flags sebelum -Command
+-- vim.opt.shellcmdflag = "-NoLogo"
 
 local servers = {
 	"lua_ls",
@@ -36,5 +43,3 @@ for _, server in ipairs(servers) do
 end
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.lsp.enable("lua_ls")
