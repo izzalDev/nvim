@@ -14,7 +14,7 @@ vim.opt.scrolloff = 999
 utils.set_bg_transparent("NormalFloat")
 utils.set_bg_transparent("FloatBorder")
 
-vim.opt.shell = "pwsh -nologo"
+-- vim.opt.shell = "pwsh -nologo"
 
 -- Flags sebelum -Command
 -- vim.opt.shellcmdflag = "-NoLogo"

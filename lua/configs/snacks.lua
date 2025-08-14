@@ -22,6 +22,20 @@ return function()
 		picker = { enabled = true },
 		win = { backdrop = 100 },
 		notify = { enabled = false },
+		lazygit = {
+			enabled = true,
+			-- Add cleanup on exit
+			configure = function(_, opts)
+				opts.win = opts.win or {}
+				opts.win.on_exit = function()
+					-- Force redraw and clear any lingering state
+					vim.schedule(function()
+						vim.cmd("redraw!")
+						collectgarbage()
+					end)
+				end
+			end,
+		},
 	})
 
 	-- vim.keymap.set("n", "<leader>e", function()
@@ -30,7 +44,7 @@ return function()
 	vim.keymap.set("n", "<leader> ", function()
 		Snacks.picker.files()
 	end, { desc = "Find Files" })
-	vim.keymap.set("n", "<leader>gl", function()
-		Snacks.lazygit()
-	end, { desc = "Lazygit" })
+	-- vim.keymap.set("n", "<leader>gl", function()
+	-- 	Snacks.lazygit()
+	-- end, { desc = "Lazygit" })
 end
