@@ -8,7 +8,7 @@ return {
 			})
 		end,
 	},
-	{ "folke/noice.nvim", event = "VeryLazy", opts = {} },
+	{ "folke/noice.nvim", event = "VeryLazy", config = require("configs.noice") },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "rcarriga/nvim-notify", event = "VeryLazy" },
 	{ "nvim-lualine/lualine.nvim", config = require("configs.lualine") },
