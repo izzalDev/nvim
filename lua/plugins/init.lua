@@ -17,6 +17,16 @@ return {
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/oil.nvim", lazy = true, cmd = { "Oil", "OilOpen", "OilClose" }, opts = {} },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+	{ "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
+	{ "hrsh7th/cmp-buffer", event = "VeryLazy" },
+	{ "hrsh7th/cmp-path", event = "VeryLazy" },
+	{ "hrsh7th/cmp-nvim-lua", event = "VeryLazy" },
+	{ "onsails/lspkind.nvim", event = "VeryLazy" },
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		config = require("configs.cmp"),
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
