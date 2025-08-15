@@ -46,6 +46,6 @@ local config = {
 
 return function()
 	require("lualine").setup(config)
-	vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
-	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { link = "NormalNC" })
 end

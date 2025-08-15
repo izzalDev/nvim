@@ -22,20 +22,7 @@ return function()
 		picker = { enabled = true },
 		win = { backdrop = 100 },
 		notify = { enabled = false },
-		lazygit = {
-			enabled = true,
-			-- Add cleanup on exit
-			configure = function(_, opts)
-				opts.win = opts.win or {}
-				opts.win.on_exit = function()
-					-- Force redraw and clear any lingering state
-					vim.schedule(function()
-						vim.cmd("redraw!")
-						collectgarbage()
-					end)
-				end
-			end,
-		},
+		lazygit = { enabled = true },
 	})
 
 	-- vim.keymap.set("n", "<leader>e", function()
