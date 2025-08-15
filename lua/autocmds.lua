@@ -21,14 +21,14 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("TermClose", {
-	pattern = "*",
-	callback = function()
-		if vim.bo.buftype == "terminal" then
-			vim.cmd("bdelete!")
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd("TermClose", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		if vim.bo.buftype == "terminal" then
+-- 			vim.cmd("bdelete!")
+-- 		end
+-- 	end,
+-- })
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   callback = function()

@@ -4,6 +4,7 @@ return function()
 	conform.setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
+			typescript = { "prettier" },
 		},
 	})
 

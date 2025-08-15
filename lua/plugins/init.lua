@@ -5,6 +5,29 @@ return {
 		config = function()
 			require("which-key").setup({
 				preset = "helix",
+				defaults = {},
+				spec = {
+					{
+						mode = { "n", "v" },
+						{ "<leader>f", group = "file/find" },
+						{ "<leader>g", group = "git" },
+						{
+							"<leader>b",
+							group = "buffer",
+							expand = function()
+								return require("which-key.extras").expand.buf()
+							end,
+						},
+						{
+							"<leader>w",
+							group = "windows",
+							proxy = "<c-w>",
+							expand = function()
+								return require("which-key.extras").expand.win()
+							end,
+						},
+					},
+				},
 			})
 		end,
 	},
@@ -55,7 +78,7 @@ return {
 		event = "BufEnter",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" },
+				ensure_installed = { "lua_ls", "ts_ls", "pyright", "powershell_es", "bashls" },
 				automatic_installation = true,
 			})
 		end,
@@ -82,7 +105,7 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter").setup({
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "lua", "typescript", "markdown", "markdown_inline" },
 				auto_install = true,
 				highlight = {
@@ -106,6 +129,7 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
+		enabled = false,
 		config = function()
 			local toggleterm = require("toggleterm")
 			local Terminal = require("toggleterm.terminal").Terminal
@@ -190,4 +214,5 @@ return {
 			{ "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Lazygit", mode = "n" },
 		},
 	},
+	{ "zapling/mason-conform.nvim" },
 }

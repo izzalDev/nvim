@@ -14,17 +14,6 @@ vim.opt.scrolloff = 999
 utils.set_bg_transparent("NormalFloat")
 utils.set_bg_transparent("FloatBorder")
 
--- vim.opt.shell = "pwsh -nologo"
-
--- Flags sebelum -Command
--- vim.opt.shellcmdflag = "-NoLogo"
-
-local servers = {
-	"lua_ls",
-	"ts_ls",
-	"dartls",
-}
-
 vim.diagnostic.config({
 	signs = {
 		text = {
@@ -37,3 +26,23 @@ vim.diagnostic.config({
 	virtual_text = true,
 	severity_sort = true,
 })
+
+-- Set shell
+vim.opt.shell = "pwsh -NoLogo"
+
+-- Set shellcmdflag
+vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command "
+	.. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+	.. "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+	.. "$PSStyle.OutputRendering='plaintext';"
+	.. "Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+
+-- Set shellredir
+vim.opt.shellredir = [[2>&1 | %{%{ "$_" }} | Out-File %s; exit $LastExitCode]]
+
+-- Set shellpipe
+vim.opt.shellpipe = [[2>&1 | %{%{ "$_" }} | tee %s; exit $LastExitCode]]
+
+-- Clear shellquote & shellxquote
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
