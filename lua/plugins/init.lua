@@ -96,9 +96,7 @@ return {
 		config = require("configs.snacks"),
 	},
 	{
-		"stevearc/conform.nvim",
-		event = { "InsertLeave", "BufWritePre" },
-		config = require("configs.conform"),
+		import = "plugins.tools"
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
