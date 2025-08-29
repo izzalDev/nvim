@@ -10,7 +10,7 @@ repos:
       - id: detect-private-key
       - id: check-added-large-files
         args: ['--maxkb=1024']
-  - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v2.1.0
+  - repo: https://github.com/izzalDev/StyLua
+    rev: fix/release-gitter-extract-all
     hooks:
-      - id: stylua-system
+      - id: stylua-github

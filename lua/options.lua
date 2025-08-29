@@ -16,19 +16,19 @@ utils.set_bg_transparent("NormalFloat")
 utils.set_bg_transparent("FloatBorder")
 
 vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
-    },
-  },
-  virtual_text = true,
-  severity_sort = true,
-  float = {
-    border = "rounded",
-  },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
+	virtual_text = true,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+	},
 })
 
 -- Set shell
@@ -36,10 +36,10 @@ vim.opt.shell = "pwsh -NoLogo"
 
 -- Set shellcmdflag
 vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command "
-  .. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-  .. "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-  .. "$PSStyle.OutputRendering='plaintext';"
-  .. "Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+	.. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+	.. "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+	.. "$PSStyle.OutputRendering='plaintext';"
+	.. "Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
 
 -- Set shellredir
 vim.opt.shellredir = [[2>&1 | %{%{ "$_" }} | Out-File %s; exit $LastExitCode]]
