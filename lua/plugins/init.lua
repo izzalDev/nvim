@@ -63,6 +63,10 @@ return {
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("catppuccin")
+			vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
+			vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
+			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
+			vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { link = "WinSeparator" })
 		end,
 	},
 	{
@@ -112,13 +116,6 @@ return {
 					enable = true,
 				},
 			})
-		end,
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		lazy = false,
-		config = function()
-			require("neo-tree").setup()
 		end,
 	},
 	{
