@@ -20,7 +20,6 @@ return function()
 		indent = { enabled = true },
 		input = {
 			enabled = true,
-			size = 100,
 			mappings = {
 				["<Esc>"] = "close",
 			},
@@ -32,7 +31,7 @@ return function()
 		lazygit = { enabled = true },
 		styles = {
 			input = {
-				width = 100,
+				width = 80,
 			},
 		},
 	})
