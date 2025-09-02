@@ -16,6 +16,7 @@ return {
 					sh = { "shfmt" },
 					markdown = { "prettier" },
 					dart = { "dart_format" },
+					handlebars = { "prettier" },
 				},
 				formatters = {
 					dart_format = {

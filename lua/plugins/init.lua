@@ -45,6 +45,7 @@ return {
 	{ "hrsh7th/cmp-path", event = "VeryLazy" },
 	{ "hrsh7th/cmp-nvim-lua", event = "VeryLazy" },
 	{ "onsails/lspkind.nvim", event = "VeryLazy" },
+	{ "saadparwaiz1/cmp_luasnip", event = "VeryLazy" },
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -62,11 +63,23 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				background = {
+					light = "latte",
+					dark = "mocha",
+				},
+			})
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				callback = function()
+					vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
+					vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "None" })
+					vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "None" })
+					vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { link = "WinSeparator" })
+					vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+					vim.api.nvim_set_hl(0, "FloatBorder", { link = "Title" })
+				end,
+			})
 			vim.cmd.colorscheme("catppuccin")
-			vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
-			vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { link = "WinSeparator" })
 		end,
 	},
 	{
@@ -116,6 +129,13 @@ return {
 					enable = true,
 				},
 			})
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-ts-autotag").setup()
 		end,
 	},
 	{
@@ -212,4 +232,39 @@ return {
 		},
 	},
 	{ "zapling/mason-conform.nvim" },
+	{
+		"L3MON4D3/LuaSnip",
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+		keys = {
+			{
+				"<tab>",
+				function()
+					require("luasnip").jump(1)
+				end,
+				mode = "s",
+			},
+			{
+				"<s-tab>",
+				function()
+					require("luasnip").jump(-1)
+				end,
+				mode = { "i", "s" },
+			},
+		},
+	},
+	{
+		"rafamadriz/friendly-snippets",
+		event = "InsertEnter",
+		config = function()
+			local luasnip = require("luasnip")
+			local loader = require("luasnip.loaders.from_vscode")
+
+			luasnip.filetype_extend("handlebars", { "html" })
+			loader.lazy_load()
+			loader.lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+		end,
+	},
 }
