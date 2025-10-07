@@ -17,6 +17,7 @@ return {
 					markdown = { "prettier" },
 					dart = { "dart_format" },
 					handlebars = { "prettier" },
+					vue = { "prettier" },
 				},
 				formatters = {
 					dart_format = {
