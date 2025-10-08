@@ -83,33 +83,6 @@ return {
 		end,
 	},
 	{
-		"mason-org/mason.nvim",
-		config = function()
-			require("mason").setup({
-				ui = { backdrop = 100, border = "rounded" },
-			})
-		end,
-	},
-	{
-		"mason-org/mason-lspconfig.nvim",
-		event = "BufEnter",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "pyright", "powershell_es", "bashls" },
-				automatic_installation = true,
-			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		event = "BufEnter",
-		config = function()
-			vim.lsp.enable("lua_ls")
-			vim.lsp.enable("bashls")
-			vim.lsp.enable("dartls")
-		end,
-	},
-	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		config = require("configs.snacks"),
