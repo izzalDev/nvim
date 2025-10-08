@@ -33,7 +33,7 @@ return {
 					local bufnr = args.buf
 					if vim.bo[bufnr].modifiable and utils.has_no_errors(bufnr) then
 						if vim.api.nvim_buf_is_valid(bufnr) then
-							conform.format()
+							conform.format({ async = true })
 						end
 					end
 				end,
