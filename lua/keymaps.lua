@@ -8,6 +8,8 @@ vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
 vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
 vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
+vim.keymap.set('n', '[p', ':<C-u>put! "<CR>', { noremap = true, silent = true, desc = 'Paste newline before' })
+vim.keymap.set('n', ']p', ':<C-u>put "<CR>', { noremap = true, silent = true, desc = 'Paste newline after' })
 -- Fungsi untuk disable key hanya di buffer normal
 local function disable_edit_keys()
 	if vim.bo.buftype == "" then -- buftype kosong artinya buffer biasa
