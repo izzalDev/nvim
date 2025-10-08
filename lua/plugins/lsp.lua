@@ -12,6 +12,7 @@ return {
 		event = "BufEnter",
 		config = function()
 			require("mason-lspconfig").setup({
+				ensure_installed = { "ts_ls", "vue_ls", "emmet_ls", "pyright", "lua_ls" },
 				automatic_installation = true,
 			})
 		end,
