@@ -39,6 +39,16 @@ return {
 				},
 				filetypes = { "typescript", "javascript", "vue" },
 			})
+
+			vim.lsp.config("cssls", {
+				filetypes = { "css", "vue", "scss", "less" },
+				capabilities = capabilities,
+			})
+
+			vim.lsp.config("html", {
+				filetypes = { "html", "ejs", "vue" },
+				capabilities = capabilities,
+			})
 		end,
 	},
 }
