@@ -49,6 +49,8 @@ return {
 				filetypes = { "html", "ejs", "vue" },
 				capabilities = capabilities,
 			})
+
+			vim.lsp.enable("dartls")
 		end,
 	},
 }
