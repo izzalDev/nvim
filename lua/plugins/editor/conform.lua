@@ -2,6 +2,14 @@ return {
 	{
 		"stevearc/conform.nvim",
 		event = { "InsertLeave", "BufWritePre" },
+		keys = {
+			{
+				"f",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true })
+				end,
+			},
+		},
 		dependencies = { "zapling/mason-conform.nvim" },
 		config = function()
 			local utils = require("utils")
@@ -15,16 +23,8 @@ return {
 					json = { "prettier" },
 					sh = { "shfmt" },
 					markdown = { "prettier" },
-					dart = { "dart_format" },
 					handlebars = { "prettier" },
 					vue = { "prettier" },
-				},
-				formatters = {
-					dart_format = {
-						command = "dart",
-						args = { "format", "--output=show" },
-						stdin = true,
-					},
 				},
 			})
 
@@ -33,15 +33,11 @@ return {
 					local bufnr = args.buf
 					if vim.bo[bufnr].modifiable and utils.has_no_errors(bufnr) then
 						if vim.api.nvim_buf_is_valid(bufnr) then
-							conform.format({ async = true })
+							conform.format({ async = true, lsp_fallback = true })
 						end
 					end
 				end,
 			})
-
-			vim.keymap.set("n", "f", function()
-				conform.format({ async = true })
-			end, { desc = "Format buffer" })
 		end,
 	},
 }

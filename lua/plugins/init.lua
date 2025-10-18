@@ -91,6 +91,12 @@ return {
 		import = "plugins.tools",
 	},
 	{
+		import = "plugins.editor.lsp",
+	},
+	{
+		import = "plugins.editor.conform",
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
@@ -204,7 +210,6 @@ return {
 			{ "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Lazygit", mode = "n" },
 		},
 	},
-	{ "zapling/mason-conform.nvim" },
 	{
 		"L3MON4D3/LuaSnip",
 		opts = {
