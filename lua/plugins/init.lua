@@ -33,7 +33,13 @@ return {
 	},
 	{ "folke/noice.nvim", event = "VeryLazy", config = require("configs.noice") },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
-	{ "rcarriga/nvim-notify", event = "VeryLazy" },
+	"rcarriga/nvim-notify",
+	event = "VeryLazy",
+	config = function()
+		require("notify").setup({
+			background_colour = "#000000",
+		})
+	end,
 	{ "nvim-lualine/lualine.nvim", config = require("configs.lualine") },
 	{ "nvim-tree/nvim-web-devicons", event = "BufReadPost" },
 	{ "mikavilpas/yazi.nvim", cmd = "YaziToggle" },
@@ -68,16 +74,14 @@ return {
 					light = "latte",
 					dark = "mocha",
 				},
-			})
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				callback = function()
-					vim.api.nvim_set_hl(0, "WinSeparator", { link = "LineNr" })
-					vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "None" })
-					vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "None" })
-					vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { link = "WinSeparator" })
-					vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-					vim.api.nvim_set_hl(0, "FloatBorder", { link = "Title" })
-				end,
+				custom_highlights = {
+					WinSeparator = { link = "LineNr" },
+					NeoTreeNormal = { bg = "None" },
+					NeoTreeNormalNC = { bg = "None" },
+					NeoTreeWinSeparator = { link = "WinSeparator" },
+					NormalFloat = { link = "Normal" },
+					FloatBorder = { link = "Title" },
+				},
 			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
