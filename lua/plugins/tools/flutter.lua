@@ -7,16 +7,22 @@ return {
 	config = function()
 		require("flutter-tools").setup({})
 
-		vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged" }, {
-			callback = function(args)
-				local bufnr = args.buf
-				local utils = require("utils")
+		local function flutter_reload(args)
+			local bufnr = args.buf
+			local has_errors = not require("utils").has_no_errors(bufnr)
+			if has_errors then
+				return
+			end
+			vim.cmd("FlutterReload")
+		end
 
-				if vim.bo[bufnr].modifiable and utils.has_no_errors(bufnr) then
-					if vim.bo[bufnr].filetype == "dart" then
-						vim.cmd("FlutterReload")
-					end
+		vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged" }, {
+			pattern = "*.dart",
+			callback = function(args)
+				local function perform_reload()
+					flutter_reload(args)
 				end
+				vim.defer_fn(perform_reload, 300)
 			end,
 		})
 	end,
