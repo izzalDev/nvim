@@ -1,4 +1,5 @@
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+	group = vim.api.nvim_create_augroup("AutoSaveOnChange", { clear = true }),
 	callback = function()
 		local buftype = vim.bo.buftype
 		local modified = vim.bo.modified
