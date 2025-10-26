@@ -5,7 +5,11 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		require("flutter-tools").setup({})
+		require("flutter-tools").setup({ lsp = {
+			color = {
+				enabled = true,
+			},
+		} })
 
 		local function flutter_reload(args)
 			local bufnr = args.buf
