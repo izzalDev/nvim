@@ -51,3 +51,4 @@ vim.opt.shellpipe = [[2>&1 | %{%{ "$_" }} | tee %s; exit $LastExitCode]]
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
 vim.opt.textwidth = 80
+vim.opt.ffs = "unix"
