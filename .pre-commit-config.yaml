@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
@@ -11,6 +11,6 @@ repos:
       - id: check-added-large-files
         args: ['--maxkb=1024']
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v2.2.0
+    rev: v2.3.1
     hooks:
       - id: stylua-github
