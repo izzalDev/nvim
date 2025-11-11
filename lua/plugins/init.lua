@@ -87,11 +87,6 @@ return {
 		end,
 	},
 	{
-		"folke/snacks.nvim",
-		priority = 1000,
-		config = require("configs.snacks"),
-	},
-	{
 		import = "plugins.tools",
 	},
 	{
