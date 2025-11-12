@@ -19,8 +19,8 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		event = "BufEnter",
 		dependencies = { "hoffs/omnisharp-extended-lsp.nvim" },
-		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local vue_language_server = vim.fn.stdpath("data")

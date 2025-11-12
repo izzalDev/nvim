@@ -233,4 +233,7 @@ return {
 			loader.lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 		end,
 	},
+	{
+		import = "plugins.ui",
+	},
 }
