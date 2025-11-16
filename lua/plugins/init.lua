@@ -33,13 +33,15 @@ return {
 	},
 	{ "folke/noice.nvim", event = "VeryLazy", config = require("configs.noice") },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
-	"rcarriga/nvim-notify",
-	event = "VeryLazy",
-	config = function()
-		require("notify").setup({
-			background_colour = "#000000",
-		})
-	end,
+	{
+		"rcarriga/nvim-notify",
+		event = "VeryLazy",
+		config = function()
+			require("notify").setup({
+				background_colour = "#000000",
+			})
+		end,
+	},
 	{ "nvim-lualine/lualine.nvim", config = require("configs.lualine") },
 	{ "nvim-tree/nvim-web-devicons", event = "BufReadPost" },
 	{ "mikavilpas/yazi.nvim", cmd = "YaziToggle" },
@@ -59,6 +61,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
+				transparent_background = true,
 				background = {
 					light = "latte",
 					dark = "mocha",
