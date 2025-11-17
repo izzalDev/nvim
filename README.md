@@ -11,9 +11,9 @@ Pada bagian ini, kita akan membahas **keymap** terlebih dahulu — khususnya key
 Telescope adalah plugin pencarian yang sangat fleksibel di Neovim.
 Berikut daftar keymap yang digunakan untuk memanggil berbagai fitur **builtin** Telescope.
 
-| Keymap        | Aksi                          | Deskripsi                                  |
-|---------------|-------------------------------|--------------------------------------------|
-| `<leader>ff`  | `builtin.find_files`          | Mencari file di dalam workspace            |
-| `<leader>fg`  | `builtin.live_grep`           | Mencari teks secara langsung (live grep)   |
-| `<leader>fb`  | `builtin.buffers`             | Menampilkan dan berpindah antar buffer     |
-| `<leader>fh`  | `builtin.help_tags`           | Mencari dokumentasi bantuan Neovim         |
+| Keymap       | Aksi                 | Deskripsi                                |
+| ------------ | -------------------- | ---------------------------------------- |
+| `<leader>ff` | `builtin.find_files` | Mencari file di dalam workspace          |
+| `<leader>fg` | `builtin.live_grep`  | Mencari teks secara langsung (live grep) |
+| `<leader>fb` | `builtin.buffers`    | Menampilkan dan berpindah antar buffer   |
+| `<leader>fh` | `builtin.help_tags`  | Mencari dokumentasi bantuan Neovim       |
