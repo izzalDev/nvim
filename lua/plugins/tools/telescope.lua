@@ -1,20 +1,16 @@
 return {
 	"nvim-telescope/telescope.nvim",
-
+	cmd = { "Telescope" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
-
-	keys = function()
-		local builtin = require("telescope.builtin")
-		return {
-			{ "<leader>ff", builtin.find_files, desc = "Find files" },
-			{ "<leader>fb", builtin.buffers, desc = "Find buffers" },
-			{ "<leader>fh", builtin.help_tags, desc = "Help tags" },
-			{ "<leader>fs", builtin.lsp_document_symbols, desc = "Document symbols" },
-		}
-	end,
+	keys = {
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+		{ "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
+	},
 	config = function()
 		require("telescope").setup({
 			extensions = {

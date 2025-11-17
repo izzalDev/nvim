@@ -4,13 +4,14 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
+		"antosha417/nvim-lsp-file-operations",
 	},
-	lazy = false,
 	keys = {
 		{ "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "Explorer (Neo-tree)" },
 		{ "<leader>o", "<cmd>Neotree focus<cr>", desc = "Focus Neo-tree" },
 	},
 	config = function()
+		require("lsp-file-operations").setup({})
 		require("neo-tree").setup({
 			event_handlers = {
 				{
