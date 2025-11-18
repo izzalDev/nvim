@@ -1,15 +1,42 @@
 return {
 	"nvim-flutter/flutter-tools.nvim",
-	lazy = true,
+	ft = "dart",
+	cmd = {
+		"FlutterRun",
+		"FlutterDebug",
+		"FlutterDevices",
+		"FlutterEmulators",
+		"FlutterReload",
+		"FlutterRestart",
+		"FlutterQuit",
+		"FlutterAttach",
+		"FlutterDetach",
+		"FlutterOutlineToggle",
+		"FlutterOutlineOpen",
+		"FlutterDevTools",
+		"FlutterDevToolsActivate",
+		"FlutterCopyProfilerUrl",
+		"FlutterLspRestart",
+		"FlutterSuper",
+		"FlutterReanalyze",
+		"FlutterRename",
+		"FlutterLogClear",
+		"FlutterLogToggle",
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		require("flutter-tools").setup({ lsp = {
-			color = {
-				enabled = true,
+		require("flutter-tools").setup({
+			lsp = {
+				color = {
+					enabled = true,
+				},
 			},
-		} })
+			dev_log = {
+				open_cmd = "botright 10split",
+			},
+		})
 
 		local function flutter_reload(args)
 			local bufnr = args.buf
