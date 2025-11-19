@@ -1,6 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	cmd = { "Telescope" },
+	ft = "mason",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
