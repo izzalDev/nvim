@@ -49,13 +49,6 @@ return {
 	{ "stevearc/oil.nvim", lazy = true, cmd = { "Oil", "OilOpen", "OilClose" }, opts = {} },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("configs.gitsigns")
-		end,
-	},
-	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
@@ -82,10 +75,7 @@ return {
 		import = "plugins.tools",
 	},
 	{
-		import = "plugins.editor.lsp",
-	},
-	{
-		import = "plugins.editor.conform",
+		import = "plugins.editor",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
