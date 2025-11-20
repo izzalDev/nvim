@@ -36,6 +36,9 @@ return {
 			dev_log = {
 				open_cmd = "botright 10split",
 			},
+			widget_guides = {
+				enabled = true,
+			},
 		})
 
 		local function flutter_reload(args)
