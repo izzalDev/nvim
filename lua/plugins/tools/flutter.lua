@@ -39,6 +39,10 @@ return {
 			widget_guides = {
 				enabled = true,
 			},
+			closing_tags = {
+				highlight = "@property",
+				enabled = true,
+			},
 		})
 
 		local function flutter_reload(args)
@@ -57,6 +61,13 @@ return {
 					flutter_reload(args)
 				end
 				vim.defer_fn(perform_reload, 300)
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufWinEnter", {
+			pattern = "__FLUTTER_DEV_LOG__",
+			callback = function()
+				vim.opt_local.winfixheight = true
 			end,
 		})
 	end,
