@@ -22,6 +22,7 @@ return {
 				},
 			},
 			use_popups_for_input = false,
+			sources = { "filesystem", "document_symbols" },
 		})
 	end,
 }

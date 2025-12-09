@@ -36,6 +36,18 @@ return function()
 				border = { style = "rounded" },
 			},
 		},
+		routes = {
+			{
+				filter = {
+					event = "notify",
+					kind = "warn", -- Hanya memfilter pesan WARN
+					find = "[Neo-tree WARN]", -- Hanya memfilter pesan yang berisi teks ini
+				},
+				opts = {
+					skip = true, -- Perintah utama: Lewati (sembunyikan) notifikasi ini
+				},
+			},
+		},
 	})
 
 	-- Setup LSP keymaps setelah noice diinisialisasi
