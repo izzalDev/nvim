@@ -26,6 +26,9 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	keys = {
+		{ "<leader>rp", "<cmd>FlutterRun<CR>", desc = "Run Project" },
+	},
 	config = function()
 		require("flutter-tools").setup({
 			lsp = {
