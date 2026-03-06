@@ -82,7 +82,7 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup({
+			require("nvim-treesitter").setup({
 				ensure_installed = { "lua", "markdown", "markdown_inline", "gitcommit" },
 				auto_install = true,
 				highlight = {
