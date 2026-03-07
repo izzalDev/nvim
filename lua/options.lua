@@ -31,9 +31,6 @@ vim.diagnostic.config({
 	},
 })
 
--- Set shell
-vim.opt.shell = "pwsh -NoLogo"
-
 -- Set shellcmdflag
 vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command "
 	.. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
