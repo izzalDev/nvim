@@ -12,8 +12,6 @@ vim.keymap.set("", "<LeftMouse>", "<Nop>")
 vim.keymap.set("", "<RightMouse>", "<Nop>")
 vim.cmd("set mousescroll=ver:1")
 vim.opt.scrolloff = 999
--- utils.set_bg_transparent("NormalFloat")
--- utils.set_bg_transparent("FloatBorder")
 
 vim.diagnostic.config({
 	signs = {
@@ -31,34 +29,27 @@ vim.diagnostic.config({
 	},
 })
 
--- Set shellcmdflag
-vim.opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command "
-	.. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-	.. "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-	.. "$PSStyle.OutputRendering='plaintext';"
-	.. "Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+if vim.fn.has("win32") == 1 then
+	local shell_cmd = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
 
--- Set shellredir
-vim.opt.shellredir = [[2>&1 | %{%{ "$_" }} | Out-File %s; exit $LastExitCode]]
+	local powershell_options = {
+		shell = shell_cmd,
+		-- Gabungkan flag yang kompleks ke dalam satu string di sini
+		shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+			.. "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+			.. "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+			.. "Remove-Alias -Force tee -ErrorAction SilentlyContinue;",
+		shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+		shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+		shellquote = "",
+		shellxquote = "",
+	}
 
--- Set shellpipe
-vim.opt.shellpipe = [[2>&1 | %{%{ "$_" }} | tee %s; exit $LastExitCode]]
+	for option, value in pairs(powershell_options) do
+		vim.opt[option] = value
+	end
+end
 
--- Clear shellquote & shellxquote
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
+-- Setting umum (Non-shell related)
 vim.opt.textwidth = 80
 vim.opt.ffs = "unix"
-
-local powershell_options = {
-	shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-	shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-	shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-	shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-	shellquote = "",
-	shellxquote = "",
-}
-
-for option, value in pairs(powershell_options) do
-	vim.opt[option] = value
-end
