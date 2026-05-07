@@ -11,6 +11,7 @@ return {
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
 		{ "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
 	},
 	config = function()
 		require("telescope").setup({
