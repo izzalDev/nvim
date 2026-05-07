@@ -106,13 +106,11 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		enabled = false,
 		config = function()
 			local toggleterm = require("toggleterm")
 			local Terminal = require("toggleterm.terminal").Terminal
 
 			toggleterm.setup({
-				shell = "pwsh -NoLogo",
 				highlights = {
 					Normal = { guibg = "NONE" },
 				},
