@@ -7,8 +7,11 @@ return {
 		"antosha417/nvim-lsp-file-operations",
 	},
 	keys = {
-		{ "<leader>e", "<cmd>Neotree toggle left<cr>", desc = "Explorer (Neo-tree)" },
-		{ "<leader>o", "<cmd>Neotree focus<cr>", desc = "Focus Neo-tree" },
+		{ "<leader>ef", "<cmd>Neotree toggle left<cr>", desc = "Files" },
+		{ "<leader>eo", "<cmd>Neotree focus<cr>", desc = "Focus" },
+		{ "<leader>es", "<cmd>Neotree toggle left source=document_symbols<cr>", desc = "Document Symbols" },
+		{ "<leader>eb", "<cmd>Neotree toggle left source=buffers<cr>", desc = "Buffers" },
+		{ "<leader>eg", "<cmd>Neotree toggle left source=git_status<cr>", desc = "Git Status" },
 	},
 	config = function()
 		require("lsp-file-operations").setup({})
@@ -21,8 +24,14 @@ return {
 					end,
 				},
 			},
+			window = {
+				mappings = {
+					["<esc>"] = "close_window",
+					["q"] = "close_window",
+				},
+			},
 			use_popups_for_input = false,
-			sources = { "filesystem", "document_symbols" },
+			sources = { "filesystem", "document_symbols", "buffers", "git_status" },
 		})
 	end,
 }

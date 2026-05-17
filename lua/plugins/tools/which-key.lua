@@ -11,6 +11,7 @@ return {
 						mode = { "n", "v" },
 						{ "<leader>f", group = "file/find" },
 						{ "<leader>g", group = "git" },
+						{ "<leader>e", group = "Explorer NeoTree" },
 						{
 							"<leader>b",
 							group = "buffer",

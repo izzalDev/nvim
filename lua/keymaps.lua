@@ -63,8 +63,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- You can also add more advanced actions or integrate with plugins like Telescope for LSP functions.
 		-- Example for diagnostics:
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Previous Diagnostic" })
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = -1 })
+		end, { buffer = bufnr, desc = "Previous Diagnostic" })
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = 1 })
+		end, { buffer = bufnr, desc = "Next Diagnostic" })
 		vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, { buffer = bufnr, desc = "Open Diagnostic Float" })
 	end,
 })
