@@ -8,8 +8,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.fillchars = { eob = " " }
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
-vim.keymap.set("", "<LeftMouse>", "<Nop>")
-vim.keymap.set("", "<RightMouse>", "<Nop>")
 vim.cmd("set mousescroll=ver:1")
 vim.opt.scrolloff = 999
 

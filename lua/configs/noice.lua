@@ -49,34 +49,4 @@ return function()
 			},
 		},
 	})
-
-	-- Setup LSP keymaps setelah noice diinisialisasi
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("NoiceLspKeymaps", { clear = true }),
-		callback = function(args)
-			local bufnr = args.buf
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			if not client then
-				return
-			end
-
-			-- LSP Hover (K) - handled by noice
-			if client.server_capabilities and client.server_capabilities.hoverProvider then
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-					buffer = bufnr,
-					desc = "LSP Hover",
-					silent = true,
-				})
-			end
-
-			-- LSP Signature Help (Ctrl+k) - handled by noice
-			if client.server_capabilities and client.server_capabilities.signatureHelpProvider then
-				vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {
-					buffer = bufnr,
-					desc = "LSP Signature Help",
-					silent = true,
-				})
-			end
-		end,
-	})
 end

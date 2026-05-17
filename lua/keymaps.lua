@@ -1,3 +1,7 @@
+-- Disable mouse clicks to avoid cursor jumping
+vim.keymap.set("", "<LeftMouse>", "<Nop>")
+vim.keymap.set("", "<RightMouse>", "<Nop>")
+
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("n", "<leader>g", "", { desc = "+Git" })
 vim.keymap.set("n", "<leader>f", "", { desc = "+Find" })
@@ -47,6 +51,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>f", function()
 			vim.lsp.buf.format({ async = true })
 		end, { buffer = bufnr, desc = "Format Code" })
+
+		-- LSP Signature Help (Ctrl+k) in insert mode - handled by noice/LSP
+		if client and client.server_capabilities.signatureHelpProvider then
+			vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {
+				buffer = bufnr,
+				desc = "LSP Signature Help",
+				silent = true,
+			})
+		end
 
 		-- You can also add more advanced actions or integrate with plugins like Telescope for LSP functions.
 		-- Example for diagnostics:
