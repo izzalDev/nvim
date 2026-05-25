@@ -3,26 +3,40 @@ return {
 		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup({
-				ui = { backdrop = 100, border = "rounded" },
+				ui = {
+					backdrop = 100,
+					border = "rounded",
+				},
 			})
 		end,
 	},
+
 	{
 		"mason-org/mason-lspconfig.nvim",
 		event = "BufEnter",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ts_ls", "vue_ls", "emmet_ls", "lua_ls" },
+				ensure_installed = {
+					"ts_ls",
+					"vue_ls",
+					"emmet_ls",
+					"lua_ls",
+					"pylsp",
+				},
 				automatic_installation = true,
 			})
 		end,
 	},
+
 	{
 		"neovim/nvim-lspconfig",
 		event = "BufEnter",
-		dependencies = { "hoffs/omnisharp-extended-lsp.nvim" },
+		dependencies = {
+			"hoffs/omnisharp-extended-lsp.nvim",
+		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local vue_language_server = vim.fn.stdpath("data")
 				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
@@ -50,9 +64,32 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.config("pylsp", {
+				capabilities = capabilities,
+				settings = {
+					pylsp = {
+						plugins = {
+							jedi_completion = {
+								enabled = true,
+								include_params = true,
+							},
+							pyflakes = { enabled = true },
+							pycodestyle = { enabled = false },
+							mccabe = { enabled = false },
+							autopep8 = { enabled = false },
+							yapf = { enabled = false },
+							black = { enabled = true },
+							isort = { enabled = true },
+						},
+					},
+				},
+			})
+
 			vim.lsp.enable("dartls")
+			vim.lsp.enable("pylsp")
 		end,
 	},
+
 	{
 		"MysticalDevil/inlay-hints.nvim",
 		event = "LspAttach",
