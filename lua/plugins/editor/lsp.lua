@@ -33,6 +33,7 @@ return {
 		event = "BufEnter",
 		dependencies = {
 			"hoffs/omnisharp-extended-lsp.nvim",
+			"antosha417/nvim-lsp-file-operations",
 		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -85,8 +86,51 @@ return {
 				},
 			})
 
-			vim.lsp.enable("dartls")
-			vim.lsp.enable("pylsp")
+			if vim.fn.has("mac") == 1 then
+				vim.lsp.config("sourcekit", {
+					capabilities = capabilities,
+					cmd = { "sourcekit-lsp" },
+					filetypes = { "swift", "objc", "objcpp" },
+					root_dir = function(_, callback)
+						local util = require("lspconfig.util")
+						callback(
+							util.root_pattern("Package.swift")(vim.fn.getcwd())
+								or util.find_git_ancestor(vim.fn.getcwd())
+						)
+					end,
+				})
+			end
+
+			-- Configure and enable all required LSP servers
+			local servers = {
+				"ts_ls",
+				"vue_ls",
+				"emmet_ls",
+				"lua_ls",
+				"cssls",
+				"html",
+				"pylsp",
+				"dartls",
+			}
+			if vim.fn.has("mac") == 1 then
+				table.insert(servers, "sourcekit")
+			end
+
+			for _, server in ipairs(servers) do
+				-- If capabilities haven't been customized, register them
+				if
+					server ~= "sourcekit"
+					and server ~= "pylsp"
+					and server ~= "ts_ls"
+					and server ~= "cssls"
+					and server ~= "html"
+				then
+					vim.lsp.config(server, {
+						capabilities = capabilities,
+					})
+				end
+				vim.lsp.enable(server)
+			end
 		end,
 	},
 

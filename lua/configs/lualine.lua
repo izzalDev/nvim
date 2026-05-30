@@ -1,3 +1,28 @@
+local function xcodebuild_device()
+	if not vim.g.xcodebuild_platform then
+		return ""
+	end
+	if vim.g.xcodebuild_platform == "macOS" then
+		return " macOS"
+	end
+
+	local deviceIcon = ""
+	if vim.g.xcodebuild_platform:match("watch") then
+		deviceIcon = "󰢗"
+	elseif vim.g.xcodebuild_platform:match("tv") then
+		deviceIcon = ""
+	elseif vim.g.xcodebuild_platform:match("vision") then
+		deviceIcon = "󰊪"
+	end
+
+	local name = vim.g.xcodebuild_device_name or "Unknown Device"
+	if vim.g.xcodebuild_os then
+		return deviceIcon .. " " .. name .. " (" .. vim.g.xcodebuild_os .. ")"
+	end
+
+	return deviceIcon .. " " .. name
+end
+
 local config = {
 	options = {
 		component_separators = "",
@@ -22,7 +47,27 @@ local config = {
 		lualine_c = {
 			"%=", --[[ add your center components here in place of this comment ]]
 		},
-		lualine_x = {},
+		lualine_x = {
+			{
+				function()
+					local parts = {}
+					if vim.g.xcodebuild_scheme then
+						table.insert(parts, " " .. vim.g.xcodebuild_scheme)
+					end
+
+					local device = xcodebuild_device()
+					if device ~= "" then
+						table.insert(parts, device)
+					end
+
+					return table.concat(parts, "  ")
+				end,
+				cond = function()
+					return vim.g.xcodebuild_scheme ~= nil
+				end,
+				color = { fg = "#f5c2e7" }, -- Catppuccin Pink
+			},
+		},
 		lualine_y = {
 			"lsp_status",
 			{

@@ -8,6 +8,7 @@ return {
 				function()
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
+				desc = "Format Code",
 			},
 		},
 		dependencies = { "zapling/mason-conform.nvim" },
@@ -25,6 +26,7 @@ return {
 					markdown = { "prettier" },
 					handlebars = { "prettier" },
 					vue = { "prettier" },
+					swift = { "swift_format" },
 				},
 			})
 
