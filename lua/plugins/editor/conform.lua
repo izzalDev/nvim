@@ -27,6 +27,7 @@ return {
 					handlebars = { "prettier" },
 					vue = { "prettier" },
 					swift = { "swift_format" },
+					tex = { "tex-fmt" },
 				},
 			})
 

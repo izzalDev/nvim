@@ -24,7 +24,7 @@ All plugins are organized into dedicated categories under `lua/plugins/`. Adding
 └── lua/
     ├── init.lua               # Internal auto-loaded setup
     ├── options.lua            # Global Neovim settings (indents, clipboard, mouse, etc.)
-    ├── keymaps.lua            # General keymaps, mouse disabler, & LSP Attach autocmd
+    ├── keymaps.lua            # General keymaps & mouse disabler
     ├── autocmds.lua           # Auto-save & shada temporary file cleaner
     ├── utils.lua              # Global utility functions (diagnostic checks, etc.)
     │
@@ -45,7 +45,7 @@ All plugins are organized into dedicated categories under `lua/plugins/`. Adding
         ├── editor/            # Coding Intellisense & Navigation
         │   ├── conform.lua    # Auto-formatter specs (stylua, prettier, shfmt, etc.)
         │   ├── gitsigns.lua   # Inline Git change markers & hunk controls
-        │   ├── lsp.lua        # Mason, Mason-LSPConfig, Lspconfig, & Inlay Hints
+        │   ├── lsp.lua        # Mason, Lspconfig, Inlay Hints, & LSP Attach Keymaps
         │   ├── neotree.lua    # Neo-tree file sidebar explorer
         │   └── treesitter.lua # Syntax highlighting parser, Autotag, & Autopairs
         │
@@ -57,7 +57,10 @@ All plugins are organized into dedicated categories under `lua/plugins/`. Adding
             ├── yazi.lua       # Yazi terminal file manager integration
             ├── flutter.lua    # Complete Flutter & Dart development suite
             ├── code_runner.lua# Code runner plugin (CRunner)
-            └── which-key.lua  # Visual popup menu reminding keyboard shortcuts
+            ├── which-key.lua  # Visual popup menu reminding keyboard shortcuts
+            ├── nvim-dap.lua   # Debug Adapter Protocol setup
+            ├── xcodebuild.lua # Xcodebuild integration for iOS/macOS
+            └── vimtex.lua     # LaTeX compilation and viewing tools
 ```
 
 ---
@@ -158,6 +161,18 @@ These keymaps are bound dynamically **only** when a language server (LSP) attach
 - `Y` in Visual mode yanks text and moves the cursor automatically to the end of the selection.
 - Arrow keys (`<Up>`, `<Down>`, `<Left>`, `<Right>`) and `<BS>` (Backspace) are disabled in normal and insert modes in regular buffers to cultivate strong habits of using classic Neovim movements (`h/j/k/l`).
 - Mouse dragging/clicking keymaps (`<LeftMouse>` / `<RightMouse>`) are disabled to prevent accidental cursor repositioning.
+
+### 7. LaTeX Keymaps (Vimtex)
+| Shortcut | Action | Description |
+| :--- | :--- | :--- |
+| `<leader>lc` | `:VimtexCompile` | Toggle LaTeX compilation |
+| `<leader>lv` | `:VimtexView` | View compiled PDF |
+| `<leader>lx` | `:VimtexClean` | Clean Aux files |
+| `<leader>lX` | `:VimtexClean!` | Clean all files including PDF |
+| `<leader>lt` | `:VimtexTocToggle`| Toggle Table of Contents |
+| `<leader>le` | `:VimtexErrors` | Show LaTeX errors |
+| `<leader>li` | `:VimtexInfo` | Show LaTeX info |
+| `<leader>ls` | `:VimtexStatus` | Show compiler status |
 
 ---
 

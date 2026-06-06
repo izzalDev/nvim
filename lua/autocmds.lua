@@ -21,20 +21,3 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		end
 	end,
 })
-
--- vim.api.nvim_create_autocmd("TermClose", {
--- 	pattern = "*",
--- 	callback = function()
--- 		if vim.bo.buftype == "terminal" then
--- 			vim.cmd("bdelete!")
--- 		end
--- 	end,
--- })
-
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   callback = function()
---     vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
---     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
---     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
---   end,
--- })

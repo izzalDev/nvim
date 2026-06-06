@@ -1,14 +1,18 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
-		build = ":TSUpdate",
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
-			require("nvim-treesitter").setup({
-				ensure_installed = { "lua", "markdown", "markdown_inline", "gitcommit" },
-				auto_install = true,
-				highlight = {
-					enable = true,
+			require("nvim-treesitter.configs").setup({
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true, -- Otomatis lompat ke textobject terdekat
+						keymaps = {
+							["af"] = "@function.outer", -- Memilih seluruh fungsi/blok komponen
+							["if"] = "@function.inner", -- Memilih isi di dalam komponen saja
+						},
+					},
 				},
 			})
 		end,
